@@ -1,9 +1,9 @@
 <template>
   <li>
     <input
-      type="checkbox" 
-      v-model="done"
-      @change="onChange"
+      type="checkbox"
+      :checked="done"
+      @click="onChange"
       >
     <span :class="{'is-done': done}">{{text}}</span>
     <button @click="deleteClick">X</button>
@@ -13,19 +13,23 @@
 <script>
 export default {
   props:['itemData'],
-  data() {
-    return {
-      id: this.itemData.id,
-      done: this.itemData.done,
-      text: this.itemData.text
+  computed: {
+    done() {
+      return this.itemData.done;
+    },
+    id() {
+      return this.itemData.id;
+    },
+    text() {
+      return this.itemData.text;
     }
   },
   methods: {
     deleteClick() {
-      this.$emit('deleteclick', this.id);
+      this.$emit('delete', this.id);
     },
     onChange(e) {
-      this.$emit('checkchange', {id:this.id, value: this.done});
+      this.$emit('update', {id:this.id, value: !this.done});
     }
   }
 }

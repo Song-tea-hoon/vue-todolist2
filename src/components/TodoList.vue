@@ -2,15 +2,15 @@
   <div>
     <h2>TodoList</h2>
     <ul>
-      <TodoListItem 
+      <TodoListItem
         v-for="item in list"
         :item-data="item"
         :key="item.id"
-        @deleteclick="deleteList"
-        @checkchange="checkList"
+        @delete="deleteList"
+        @update="updateList"
       />
     </ul>
-    <TodoListInput @addclick="addList"/>
+    <TodoListInput @add="addList"/>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default {
     deleteList(id) {
       this.list = this.list.filter(item => item.id !== id);
     },
-    checkList(val) {
+    updateList(val) {
       const {id, value} = val;
       this.list = this.list.map(item => {
         if(item.id === id){

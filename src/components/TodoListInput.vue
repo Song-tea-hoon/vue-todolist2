@@ -1,7 +1,7 @@
 <template>
   <div class="input">
-    <input 
-      type="text" 
+    <input
+      type="text"
       placeholder="할 일을 입력해주세요"
       v-model="text"
     >
@@ -22,7 +22,7 @@ export default {
         alert('할 일을 입력해 주세요');
         return;
       }
-      this.$emit('addclick', this.text);
+      this.$emit('add', this.text);
       this.text = '';
     }
   }
