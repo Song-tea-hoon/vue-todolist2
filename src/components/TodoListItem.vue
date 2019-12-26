@@ -2,7 +2,7 @@
   <li>
     <input
       type="checkbox"
-      v-model="done"
+      :checked="done"
       @change="onChange"
       >
     <span :class="{ 'is-done': done }">{{text}}</span>
@@ -33,8 +33,8 @@ export default {
       this.$emit('delete', this.id);
     },
     onChange() {
-      console.log('change', this.done)
-      this.$emit('update', {id:this.id, value: this.done});
+      console.log(this.done)
+      this.$emit('update', {id:this.id, value: !this.done});
     }
   }
 }
